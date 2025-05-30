@@ -24,10 +24,8 @@ void filtrarVisitantes(int visitantes, std::vector<std::string>& todos_nomes, st
     std::cout << "Digite a idade minima para filtrar os visitantes:" << std::endl;
     std::cin >> filter;
     std::cout << "Visitantes com idade igual ou superior a " << filter << ":" << std::endl;
-    for (int j = 0; j < visitantes; j++)
-    {
-        if (todas_idades.at(j) >= filter)
-        {
+    for (int j = 0; j < visitantes; j++){
+        if (todas_idades.at(j) >= filter){
             std::cout << "- " << todos_nomes.at(j) << std::endl;
         }
     }
