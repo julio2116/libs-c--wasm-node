@@ -13,5 +13,6 @@ int main(){
     
     inserirVisitantes(visitantes, todos_nomes, todas_idades);
     filtrarVisitantes(visitantes, todos_nomes, todas_idades);
+    classificarIdade(todas_idades, todos_nomes);
     return 0;
 }
