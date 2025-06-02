@@ -6,7 +6,7 @@
 #include <vector>
 #include <map>
 
-enum FaixaEtaria{
+enum class FaixaEtaria{
     CRIANCA,
     ADOLESCENTE,
     ADULTO,
