@@ -23,8 +23,12 @@ void writeFile(const std::string& archive, const int& times){
 }
 void readFile(const std::string& archive){
     std::string linha;
+    int position;
     std::ifstream arquivo(archive);
+    std::vector<std::map<std::string, int>> line;
     while (std::getline(arquivo, linha)){
+        position = linha.find("-");
+        line[linha.substr(linha.begin(), position - 1)] = 5;
         std::cout << linha << std::endl;
     }
     arquivo.close();
