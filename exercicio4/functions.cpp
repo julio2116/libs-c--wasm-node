@@ -1,18 +1,23 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <vector>
 
-void writeFile(const std::string& archive){
+void writeFile(const std::string& archive, const int& times){
     std::string nome;
     int idade;
+    std::vector<std::pair<std::string, int>> nomesIdades;
     std::ofstream arquivo(archive);
-    std::cout << "Insira o nome e em seguida a idade de 3 pessoas:" << std::endl;
-    for (int i = 0; i < 3; i++){
+    std::cout << "Insira o nome e em seguida a idade das pessoas:" << std::endl;
+    for (int i = 0; i < times; i++){
         std::cout << "Insira o nome da pessoa " << i + 1 << std::endl;
         std::getline(std::cin >> std::ws, nome);
         std::cout << "Insira a idade de " << nome << std::endl;
         std::cin >> idade;
-        arquivo << nome << ", " << idade << "\n";
+        nomesIdades.push_back({nome, idade});
+    }
+    for(const auto& item : nomesIdades){
+        arquivo << "\"" << item.first << "\"," << item.second << "\n";
     }
     arquivo.close();
 }

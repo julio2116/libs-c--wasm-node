@@ -4,7 +4,7 @@
 #include <string>
 #include <fstream>
 
-void writeFile(const std::string& archive);
+void writeFile(const std::string& archive, const int& times);
 void readFile(const std::string& archive);
 
 #endif
