@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <map>
 
 void writeFile(const std::string& archive, const int& times){
     std::string nome;
@@ -25,11 +26,15 @@ void readFile(const std::string& archive){
     std::string linha;
     int position;
     std::ifstream arquivo(archive);
-    std::vector<std::map<std::string, int>> line;
+    std::map<std::string, int> output;
+
     while (std::getline(arquivo, linha)){
-        position = linha.find("-");
-        line[linha.substr(linha.begin(), position - 1)] = 5;
-        std::cout << linha << std::endl;
+        position = linha.find(",");
+        std::string nomeAspas =  linha.substr(0, position);
+        std::string nome = nomeAspas.substr(0, nomeAspas.size() - 2);
+        int idade = stoi(linha.substr(position + 1));
+        std::cout << nomeAspas << " tem " << idade << " anos" << std::endl;
     }
+
     arquivo.close();
 }
