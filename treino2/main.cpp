@@ -1,37 +1,58 @@
 #include <iostream>
 #include <vector>
 
-int main(){
+double calcularMedia(const std::vector<int> &notas)
+{
+    int soma = 0;
+    if (notas.size() < 1)
+    {
+        std::cout << "E necessario ao menos uma nota para executar o programa \n";
+        return 0.0;
+    }
+    else
+    {
+        for (const auto &nota : notas)
+        {
+            soma += nota;
+        }
+        return soma / notas.size();
+    }
+}
+
+int main()
+{
     std::vector<int> notas;
-    int soma;
     bool incluir = true;
     int nota;
-    int media;
+    double media;
 
-    while(incluir){
-        std::cout << "inclua uma nova nota ou digite qualquer tecla diferente de um numero! \n";
+    while (incluir)
+    {
+        std::cout << "Digite uma nova nota (ou qualquer letra para finalizar): \n";
         std::cin >> nota;
-        if(std::cin.fail()){
+        if (std::cin.fail())
+        {
             incluir = false;
-        } else {
+        }
+        else
+        {
             notas.push_back(nota);
         }
     }
 
-    if(notas.size() < 1){
-        std::cout << "E necessario ao menos uma nota para executar o programa \n";
-    } else {
-        for(const auto &nota : notas){
-            soma += nota;
-        }
-        media = soma / notas.size();
-        if(media >= 80){
-            std::cout << "Sua media foi de: " << media << " Excelente desempenho!\n";
-        } else if(media >= 50){
-            std::cout << "Sua media foi de: " << media << " Bom, mas da para melhorar!\n";
-        } else {
-            std::cout << "Sua media foi de: " << media << " Estude os padroes dos inimigos!\n";
-        }
+    media = calcularMedia(notas);
+
+    if (media >= 80.0)
+    {
+        std::cout << "Sua media foi de: " << media << " Excelente desempenho!\n";
+    }
+    else if (media >= 50.0)
+    {
+        std::cout << "Sua media foi de: " << media << " Bom, mas da para melhorar!\n";
+    }
+    else if (media > 0.0)
+    {
+        std::cout << "Sua media foi de: " << media << " Estude os padroes dos inimigos!\n";
     }
 
     return 0;
