@@ -39,24 +39,21 @@ void writeOutputObject(std::map<faixaEtaria, std::vector<std::string>> &nomesEFa
 
     if (arquivo.is_open()){
         while (std::getline(arquivo, linha)){
-            int posicao = linha.find(",");
-            if (posicao == std::string::npos) {
-                std::cerr << "Linha malformada: " << linha << "\n";
-                continue;
-            }
-            std::string nomeAspas = linha.substr(0, posicao);
-            std::string nome = nomeAspas.substr(1, posicao - 2);
             try{
+                int posicao = linha.find(",");
+                if (posicao == std::string::npos) {
+                    throw LinhaMalFormadaException(linha);
+                }
+                std::string nomeAspas = linha.substr(0, posicao);
+                std::string nome = nomeAspas.substr(1, posicao - 2);
                 idade = stoi(linha.substr(posicao + 1));
-            }
-            catch (const std::invalid_argument &e){
-                std::cerr << "Erro ao ler os dados do arquivo\n";
-                continue;
-            }
+                faixaEtaria faixa =  classificarIdade(idade);
+                nomesEFaixa[faixa].push_back(nome);
 
-            faixaEtaria faixa =  classificarIdade(idade);
-            nomesEFaixa[faixa].push_back(nome);
-        }
+            } catch(const std::exception &e){
+                std::cerr << "Erro na leitura da linha: " << e.what() << "\n";
+                continue;
+        }}
     } else {
         std::cout << "Erro ao abrir arquivo\n";
     }

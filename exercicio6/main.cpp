@@ -5,10 +5,14 @@ int main(){
     std::vector<std::pair<std::string, int>> nomesEIdades;
     const std::string arquivo = "catalogo.csv";
     
-    initialFunction(nomesEIdades);
-    writeFile(nomesEIdades, arquivo);
-    writeOutputObject(nomesEFaixa, arquivo);
-    printResult(nomesEFaixa);
+    try{
+        initialFunction(nomesEIdades);
+        writeFile(nomesEIdades, arquivo);
+        writeOutputObject(nomesEFaixa, arquivo);
+        printResult(nomesEFaixa);
+    } catch (const std::exception &e){
+        std::cout << "Erro na execucao do programa: " << e.what() << "\n";
+    }
 
     return 0;
 }

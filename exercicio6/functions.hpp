@@ -22,4 +22,15 @@ void printResult(std::map<faixaEtaria, std::vector<std::string>> &nomesEFaixa);
 std::string converterFaixa(const faixaEtaria &faixa);
 faixaEtaria classificarIdade(const int &idade);
 
+class LinhaMalFormadaException : public std::exception {
+    std::string message;
+public:
+    LinhaMalFormadaException(const std::string& linha) {
+        message = "Linha malformada detectada: " + linha;
+    }
+    const char* what() const noexcept override {
+        return message.c_str();
+    }
+};
+
 #endif
