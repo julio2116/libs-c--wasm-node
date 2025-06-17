@@ -19,7 +19,7 @@ int main(){
                 try{
                     validarNumero(numero);
                 } catch(const std::exception& e){
-                    std::cerr << "Erro ao validar pontuacao: " << e.what() << "/n";
+                    std::cerr << "Erro ao validar pontuacao: " << e.what() << "\n";
                     continue;
                 }
             }

@@ -17,8 +17,8 @@ float calcularMedia(int* vetor, const int& tamanho){
     int temp = 0;
     for(int i = 0; i < tamanho; i++){
         temp += *(vetor + i);
-        media = static_cast<float>(temp) / tamanho;
     }
+    media = static_cast<float>(temp) / tamanho;
     return media;
 }
 
