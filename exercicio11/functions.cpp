@@ -27,7 +27,7 @@ void validarEntrada(int &numero){
         std::cin.ignore(1000, '\n');
         throw std::invalid_argument("insira apenas numeros!\n");
     }
-    if(numero < 0){
+    if(numero <= 0){
         std::cin.clear();
         std::cin.ignore(1000, '\n');
         throw std::invalid_argument("insira um numero maior que 0!\n");
