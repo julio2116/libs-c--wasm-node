@@ -1,0 +1,3 @@
+Olá, estudante de C++!
+Estamos praticando seekg e get!
+Parabéns por chegar até aqui!
