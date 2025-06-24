@@ -20,8 +20,8 @@ class Jogador{
         }
 };
 
-void addPlayer(std::vector<std::vector<std::shared_ptr<Jogador>>>& sistemas, std::vector<std::weak_ptr<Jogador>>& hud, std::string nome, int vida);
-void logoutPlayer(std::vector<std::vector<std::shared_ptr<Jogador>>>& sistemas, std::string nome);
-void verifyHud(std::vector<std::weak_ptr<Jogador>> jogadores);
+void addPlayer(std::vector<std::vector<std::shared_ptr<Jogador>>>& sistemas, std::vector<std::weak_ptr<Jogador>>& hud, const std::string& nome, const  int& vida);
+void logoutPlayer(std::vector<std::vector<std::shared_ptr<Jogador>>>& sistemas, const std::string& nome);
+void verifyHud(const std::vector<std::weak_ptr<Jogador>>& jogadores);
 
 #endif
