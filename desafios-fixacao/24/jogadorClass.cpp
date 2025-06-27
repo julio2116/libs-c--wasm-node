@@ -5,9 +5,9 @@ void Sistema::RealizarLogin(std::string nome, int vida){
         if (hud.count(nome) > 0){
             return;
         }
-        std::shared_ptr<Jogador> jogador = std::make_shared<Jogador>(jogador, vida);
+        std::shared_ptr<Jogador> jogador = std::make_shared<Jogador>(nome, vida);
         for (auto &sistema : sistemas){
-            jogadoresLogados.at(sistema).at(nome) = jogador;
+            jogadoresLogados[sistema][nome] = jogador;
         }
         hud.insert({nome, jogador});
 
@@ -26,18 +26,21 @@ void Sistema::inserirSistema(std::string sistema){
             sistemas.push_back(sistema);
         }
     }
+    if(sistemas.size() < 1){
+        sistemas.push_back(sistema);
+    }
 }
 
 void Sistema::realizarLogout(std::string nome){
     if (hud.count(nome) > 0){
         std::invalid_argument("Jogador: " + nome + " não logou no sistema!\n");
     }
-    if (hud.at(nome).expired()){
+    if (hud[nome].expired()){
         std::invalid_argument("Jogador: " + nome + " já realizou logout!\n");
     }
     for (auto &sistema : sistemas){
-        jogadoresLogados.at(sistema).at(nome).reset();
-        jogadoresLogados.at(sistema).at(nome) = nullptr;
+        jogadoresLogados[sistema][nome].reset();
+        jogadoresLogados[sistema][nome] = nullptr;
     }
 }
 
@@ -48,23 +51,26 @@ void Sistema::verificarStatusJogadores(){
 }
 
 void Sistema::combate(std::string atacanteNome, std::string atacadoNome, int dano){
-    if (hud.at(atacanteNome).expired()){
+    if (hud[atacanteNome].expired()){
         std::invalid_argument("O atacante não esta no sistema");
     }
-    if (hud.at(atacadoNome).expired()){
+    if (hud[atacadoNome].expired()){
         std::invalid_argument("O atacado não esta no sistema");
     }
-    auto atacante = hud.at(atacanteNome).lock();
-    auto atacado = hud.at(atacadoNome).lock();
-
+    
+    auto atacante = hud[atacanteNome].lock();
+    auto atacado = hud[atacadoNome].lock();
+    
     atacado->receberDano(dano);
-
+    std::cout << "teste\n";
+    
     std::cout << atacante->getNome() << " ataca " << atacado->getNome() << " causando " << dano << "de dano!\n";
+    std::cout << "teste 2\n";
 
     if (atacado->status() <= 0){
         for (auto &sistema : sistemas){
-            jogadoresLogados.at(sistema).at(atacadoNome).reset();
-            jogadoresLogados.at(sistema).at(atacadoNome) = nullptr;
+            jogadoresLogados[sistema][atacadoNome].reset();
+            jogadoresLogados[sistema][atacadoNome] = nullptr;
         }
     }
 }
