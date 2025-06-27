@@ -16,9 +16,12 @@ class Jogador{
         ~Jogador(){std::cout << "Jogador " << nome << " destruido!\n";}
 
         void receberDano(int dano){vida -= dano;}
-        void adicionarMisaao(std::string missao){listaMissoes.push_back(missao);}
+        void adicionarMissao(std::string missao){listaMissoes.push_back(missao);}
         int status(){return vida;}
         std::string getNome(){return nome;}
+        std::vector<std::string> listarMissoes(){
+            return listaMissoes;
+        }
 };
 
 class Sistema{
@@ -36,6 +39,8 @@ class Sistema{
         void realizarLogout(std::string nome);
         void verificarStatusJogadores();
         void combate(std::string atacanteNome, std::string atacadoNome, int dano);
+        void inserirMissao(std::string jogador, std::string missao);
+        void verificarMissoes(std::string nome);
 };
 
 #endif
