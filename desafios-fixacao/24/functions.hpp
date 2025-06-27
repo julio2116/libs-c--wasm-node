@@ -100,10 +100,10 @@ class Sistema{
 
             std::cout << atacante->getNome() << " ataca " << atacado->getNome() << " causando " << dano <<"de dano!\n";
 
-            if(){
+            if(atacado->status() <= 0){
                 for(auto& sistema : sistemas){
-                    jogadoresLogados.at(sistema).at(nome).reset();
-                    jogadoresLogados.at(sistema).at(nome) = nullptr;
+                    jogadoresLogados.at(sistema).at(atacadoNome).reset();
+                    jogadoresLogados.at(sistema).at(atacadoNome) = nullptr;
                 }
             }
         }
