@@ -41,7 +41,7 @@ class Sistema{
 
         void RealizarLogin(std::string nome, int vida){
             if(sistemas.size() > 0){
-                if(jogadoresLogados.at(sistemas[0]).count(nome) > 0){
+                if(hud.count(nome) > 0){
                     return;
                 }
                 std::shared_ptr<Jogador> jogador = std::make_shared<Jogador>(jogador, vida);
