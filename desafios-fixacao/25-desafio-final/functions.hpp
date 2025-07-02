@@ -2,7 +2,9 @@
 #define FUNCTIONS_HPP
 
 #include <iostream>
+#include <algorithm>
 #include <vector>
+#include <memory>
 #include <map>
 
 class Jogador{
@@ -18,7 +20,7 @@ class Jogador{
         int getStatus(){ return vida; }
         std::string getNome(){ return nome; }
         void adicionarMissao(std::string missao);
-        void listarMissoes();
+        std::vector<std::string> listarMissoes(){ return listaMissoes; };
 };
 
 class Sistema{
